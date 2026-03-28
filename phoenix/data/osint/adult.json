@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Pornhub",
+        "site": "https://www.pornhub.com/users/{}",
+        "nsfw": true,
+        "errorMessage": "User not found"
+    },
+    {
+        "name": "XVideos",
+        "site": "https://www.xvideos.com/profiles/{}",
+        "nsfw": true,
+        "errorMessage": "Profile not found"
+    },
+    {
+        "name": "OnlyFans",
+        "site": "https://onlyfans.com/{}",
+        "nsfw": true,
+        "errorMessage": "This page is unavailable"
+    },
+    {
+        "name": "Fansly",
+        "site": "https://fansly.com/{}",
+        "nsfw": true,
+        "errorMessage": "Page not found"
+    },
+    {
+        "name": "Chaturbate",
+        "site": "https://chaturbate.com/{}",
+        "nsfw": true,
+        "errorMessage": "404"
+    },
+    {
+        "name": "Stripchat",
+        "site": "https://stripchat.com/{}",
+        "nsfw": true,
+        "errorMessage": "Page not found"
+    },
+    {
+        "name": "ManyVids",
+        "site": "https://www.manyvids.com/Profile/{}",
+        "nsfw": true,
+        "errorMessage": "Profile not found"
+    }
+]

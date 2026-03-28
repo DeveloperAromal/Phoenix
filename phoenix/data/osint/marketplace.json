@@ -1,0 +1,32 @@
+[
+    {
+        "name": "eBay",
+        "site": "https://www.ebay.com/usr/{}",
+        "nsfw": false,
+        "errorMessage": "The User ID you entered was not found"
+    },
+    {
+        "name": "Etsy",
+        "site": "https://www.etsy.com/people/{}",
+        "nsfw": false,
+        "errorMessage": "Uh oh!"
+    },
+    {
+        "name": "Fiverr",
+        "site": "https://www.fiverr.com/{}",
+        "nsfw": false,
+        "errorMessage": "Oops! We couldn’t find that page"
+    },
+    {
+        "name": "Upwork",
+        "site": "https://www.upwork.com/freelancers/~{}",
+        "nsfw": false,
+        "errorMessage": "Profile not found"
+    },
+    {
+        "name": "Freelancer",
+        "site": "https://www.freelancer.com/u/{}",
+        "nsfw": false,
+        "errorMessage": "Page not found"
+    }
+]

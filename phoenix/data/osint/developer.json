@@ -1,0 +1,50 @@
+[
+    {
+        "name": "GitHub",
+        "site": "https://github.com/{}",
+        "nsfw": false,
+        "errorMessage": "Not Found"
+    },
+    {
+        "name": "GitLab",
+        "site": "https://gitlab.com/{}",
+        "nsfw": false,
+        "errorMessage": "404"
+    },
+    {
+        "name": "Bitbucket",
+        "site": "https://bitbucket.org/{}",
+        "nsfw": false,
+        "errorMessage": "Repository not found"
+    },
+    {
+        "name": "Kaggle",
+        "site": "https://www.kaggle.com/{}",
+        "nsfw": false,
+        "errorMessage": "Page Not Found"
+    },
+    {
+        "name": "HackerRank",
+        "site": "https://www.hackerrank.com/{}",
+        "nsfw": false,
+        "errorMessage": "We couldn’t find this page"
+    },
+    {
+        "name": "LeetCode",
+        "site": "https://leetcode.com/{}",
+        "nsfw": false,
+        "errorMessage": "Page Not Found"
+    },
+    {
+        "name": "Stack Overflow",
+        "site": "https://stackoverflow.com/users/{}",
+        "nsfw": false,
+        "errorMessage": "Page not found"
+    },
+    {
+        "name": "Dev.to",
+        "site": "https://dev.to/{}",
+        "nsfw": false,
+        "errorMessage": "404"
+    }
+]

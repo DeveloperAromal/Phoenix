@@ -1,0 +1,116 @@
+[
+    {
+        "name": "YouTube",
+        "site": "https://www.youtube.com/@{}",
+        "nsfw": false,
+        "errorMessage": "This page isn't available"
+    },
+    {
+        "name": "Twitter / X",
+        "site": "https://x.com/{}",
+        "nsfw": false,
+        "errorMessage": "This account doesn’t exist"
+    },
+    {
+        "name": "Twitter (Legacy)",
+        "site": "https://twitter.com/{}",
+        "nsfw": false,
+        "errorMessage": "This account doesn’t exist"
+    },
+    {
+        "name": "Facebook",
+        "site": "https://www.facebook.com/{}",
+        "nsfw": false,
+        "errorMessage": "This content isn't available right now"
+    },
+    {
+        "name": "Instagram",
+        "site": "https://www.instagram.com/{}/",
+        "nsfw": false,
+        "errorMessage": "Sorry, this page isn't available"
+    },
+    {
+        "name": "TikTok",
+        "site": "https://www.tiktok.com/@{}",
+        "nsfw": false,
+        "errorMessage": "Couldn't find this account"
+    },
+    {
+        "name": "Snapchat",
+        "site": "https://www.snapchat.com/add/{}",
+        "nsfw": false,
+        "errorMessage": "This content was not found"
+    },
+    {
+        "name": "Reddit",
+        "site": "https://www.reddit.com/user/{}",
+        "nsfw": false,
+        "errorMessage": "Sorry, nobody on Reddit goes by that name"
+    },
+    {
+        "name": "LinkedIn",
+        "site": "https://www.linkedin.com/in/{}",
+        "nsfw": false,
+        "errorMessage": "This page doesn’t exist"
+    },
+    {
+        "name": "Twitch",
+        "site": "https://www.twitch.tv/{}",
+        "nsfw": false,
+        "errorMessage": "Sorry. Unless you’ve got a time machine, that content is unavailable."
+    },
+    {
+        "name": "Discord",
+        "site": "https://discord.com/users/{}",
+        "nsfw": false,
+        "errorMessage": "Not Found"
+    },
+    {
+        "name": "Telegram",
+        "site": "https://t.me/{}",
+        "nsfw": false,
+        "errorMessage": "If you have Telegram, you can contact"
+    },
+    {
+        "name": "Pinterest",
+        "site": "https://www.pinterest.com/{}/",
+        "nsfw": false,
+        "errorMessage": "Sorry! We couldn't find that page"
+    },
+    {
+        "name": "Tumblr",
+        "site": "https://{}.tumblr.com",
+        "nsfw": false,
+        "errorMessage": "There's nothing here"
+    },
+    {
+        "name": "Medium",
+        "site": "https://medium.com/@{}",
+        "nsfw": false,
+        "errorMessage": "Out of nothing, something."
+    },
+    {
+        "name": "SoundCloud",
+        "site": "https://soundcloud.com/{}",
+        "nsfw": false,
+        "errorMessage": "We can’t find that user."
+    },
+    {
+        "name": "Spotify",
+        "site": "https://open.spotify.com/user/{}",
+        "nsfw": false,
+        "errorMessage": "Page not found"
+    },
+    {
+        "name": "VK",
+        "site": "https://vk.com/{}",
+        "nsfw": false,
+        "errorMessage": "Page Not Found"
+    },
+    {
+        "name": "Truth Social",
+        "site": "https://truthsocial.com/@{}",
+        "nsfw": false,
+        "errorMessage": "none"
+    }
+]

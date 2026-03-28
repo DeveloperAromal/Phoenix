@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Reddit",
+        "site": "https://www.reddit.com/user/{}",
+        "nsfw": false,
+        "errorMessage": "Sorry, nobody on Reddit goes by that name"
+    },
+    {
+        "name": "Quora",
+        "site": "https://www.quora.com/profile/{}",
+        "nsfw": false,
+        "errorMessage": "Page Not Found"
+    },
+    {
+        "name": "Hack Forums",
+        "site": "https://hackforums.net/member.php?action=profile&username={}",
+        "nsfw": true,
+        "errorMessage": "Invalid User"
+    },
+    {
+        "name": "XDA Developers",
+        "site": "https://forum.xda-developers.com/m/{}.html",
+        "nsfw": false,
+        "errorMessage": "Page Not Found"
+    },
+    {
+        "name": "Stack Exchange",
+        "site": "https://stackexchange.com/users/{}",
+        "nsfw": false,
+        "errorMessage": "Page not found"
+    }
+]

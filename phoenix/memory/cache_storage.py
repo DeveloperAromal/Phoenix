@@ -1,1 +1,3 @@
 API_KEY_CACHED = []
+
+URL_CRAWL_CACHE = {}
