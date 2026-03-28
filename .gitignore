@@ -4,4 +4,7 @@ __pycache__
 
 venv
 
+# internal development testing files
+
 test.txt
+analytics.py

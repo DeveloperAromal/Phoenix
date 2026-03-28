@@ -13,7 +13,9 @@ SCAN_TIMEOUT = 5
 MAX_THREADS = 10                    
 
 
-USER_AGENT = "Mozilla/5.0 (compatible; Fang-Scanner/1.0)"
+USER_AGENTS_PATH = "phoenix/data/useragents.txt"
+PROXIES_PATH = "phoenix/data/proxies.txt"
+
 MAX_CRAWL_DEPTH = 2
 MAX_CRAWL_PAGES = 50
 
