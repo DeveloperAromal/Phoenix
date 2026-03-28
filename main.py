@@ -9,7 +9,7 @@ from phoenix.utils.config_helpers import ConfigHelper
 from phoenix.modules.normalizer.normalize_websearch import Normalizer
 from phoenix.modules.transformer.url_crawler import CrawlURL
 from phoenix.memory.cache_storage import URL_CRAWL_CACHE
-
+from phoenix.modules.rotators.proxy_rotator import ProxyRotator
 
 
 
@@ -79,9 +79,9 @@ def run_phoenix():
         # else:
         #     Logger.error("No intelligence gathered.")
             
-        p = CrawlURL().crawl("DeveloperAromal")
-        print(p)
-        print(URL_CRAWL_CACHE)
-
+        # p = CrawlURL().crawl("DeveloperAromal")
+        # print(p)
+        # print(URL_CRAWL_CACHE)
+        ProxyRotator().rotate()
 if __name__ == "__main__":
     run_phoenix()
