@@ -1,4 +1,4 @@
-
+from typing import Dict
 
 class ToolPrompts:
     
@@ -44,4 +44,42 @@ class ToolPrompts:
 
                     ## Target
                         {ch_sketch}
+                """
+                
+                
+                
+    def NORMALIZE_DATA_PROMPT(self, web_search_json: dict):
+        return f"""
+                    Normalize the given web search data into a structured JSON profile of an individual.
+
+                    INPUT:
+                        {web_search_json}
+
+                    RULES:
+                        - Ignore queries, status, errors
+                        - Extract: name, usernames, profiles, projects, interests, roles, age, mentions
+                        - Detect security issues (breach/leak) if any
+                        - Convert "N/A" → null
+                        - Format dates as YYYY-MM-DD if possible
+                        - No hallucination; missing → null or []
+                        - Output ONLY JSON
+
+                    SCHEMA:
+                    {{
+                        "entity": {{
+                            "name": null,
+                            "aliases": [],
+                            "usernames": [],
+                            "age": null,
+                            "location": {{"country": null,"state": null,"city": null}},
+                            "summary": null
+                    }},
+                        "profiles": [{{"platform": null,"url": null,"username": null}}],
+                        "professional": {{"occupation": [],"skills": []}},
+                        "activities": {{"projects": []}},
+                        "interests": [],
+                        "security": {{"breaches": [],"risk_level": "unknown"}},
+                        "sources": [{{"title": null,"url": null,"date": null}}],
+                        "metadata": {{"source_count": 0}}
+                    }}
                 """

@@ -1,12 +1,32 @@
+import json
+import os
+from datetime import datetime
 from phoenix.utils.banner import Banner
 from phoenix.utils.prompt_fn import PromptUser
 from phoenix.modules.search.websearch import WebSearch
 from phoenix.utils.logger import Logger
 from phoenix.utils.config_helpers import ConfigHelper
+from phoenix.modules.normalizer.normalize_websearch import Normalizer
 
+def save_report(data):
+    if not os.path.exists("reports"):
+        os.makedirs("reports")
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"reports/recon_{timestamp}.json"
+    
+    try:
+        with open(filename, "w", encoding="utf-8") as f:
+           
+            if isinstance(data, str):
+                f.write(data)
+            else:
+                json.dump(data, f, indent=4)
+        Logger.info(f"Intelligence report saved to: {filename}")
+    except Exception as e:
+        Logger.error(f"Failed to save file: {e}")
 
 def run_phoenix():
-    
     Banner().phoenix_banner()
     config = ConfigHelper()
 
@@ -25,23 +45,34 @@ def run_phoenix():
             "\"DeveloperAromal\" (resume OR CV OR \"public record\" OR \"conference speaker\") filetype:pdf"
         ]
         
+        session_intelligence = []
+        
         for q in queries:
-            Logger.info(f"\n[QUERY] {q}")
+            Logger.info(f"\n[*] Scanning: {q}")
+            search_engine = WebSearch([q])
+            res = search_engine.search()
             
-            res = WebSearch([q]).search()
+            if res.get("success"):
+                session_intelligence.append(res)
+            else:
+                Logger.error(f"No data for: {q}")
+
+        if session_intelligence:
+            Logger.info("\n[*] Finalizing Reconnaissance...")
+            full_context = json.dumps(session_intelligence)
             
-            if not res.get("success"):
-                Logger.error("No results or fetch failed")
-                continue
-            
-            results = res.get("results", [])
-            
-            for r in results[:5]:   # safely limit to 5 results
-                print(f"\n[+] {r.get('title', 'No Title')}")
-                print(f"    {r.get('link', 'No Link')}")
-                print(f"    {r.get('snippet', 'No Snippet')}")
-            
-            if not results:
-                print("    No results found.")
+            try:
+                normalized_report = Normalizer(full_context).norm()
                 
-run_phoenix()
+                print("\n[PHOENIX FINAL INTELLIGENCE REPORT]")
+                print(normalized_report)
+                
+                save_report(normalized_report)
+                
+            except Exception as e:
+                Logger.error(f"Normalization or Saving failed: {e}")
+        else:
+            Logger.error("No intelligence gathered.")
+
+if __name__ == "__main__":
+    run_phoenix()

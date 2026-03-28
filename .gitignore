@@ -8,3 +8,5 @@ venv
 
 test.txt
 analytics.py
+output.json
+reports
