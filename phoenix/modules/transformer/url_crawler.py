@@ -1,5 +1,8 @@
 from phoenix.memory.cache_storage import URL_CRAWL_CACHE
+from phoenix.modules.rotators.proxy_rotator import ProxyRotator
+from phoenix.modules.rotators.useragent_rotator import UARotator
 from .url_crafter import CraftURL
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -8,9 +11,8 @@ class CrawlURL:
     
     def __init__(self):
         self.crafter = CraftURL()
-        self.headers = {
-            "User-Agent": "Mozilla/5.0"
-        }
+        self.proxy_rotator = ProxyRotator()
+        self.ua_rotator = UARotator()
 
     def crawl(self, username: str):
         urls = self.crafter.urls(username)
@@ -18,7 +20,25 @@ class CrawlURL:
 
         for name, url in urls.items():
             try:
-                res = requests.get(url, headers=self.headers, timeout=10)
+                headers = {
+                    "User-Agent": self.ua_rotator.rotate()
+                }
+
+                proxy = self.proxy_rotator.rotate()
+
+                try:
+                    res = requests.get(
+                        url,
+                        headers=headers,
+                        proxies=proxy,
+                        timeout=10
+                    )
+                except:
+                    res = requests.get(
+                        url,
+                        headers=headers,
+                        timeout=10
+                    )
 
                 data = {
                     "url": url,
@@ -52,7 +72,6 @@ class CrawlURL:
                     "status": "error",
                     "error": str(e)
                 }
-
-        URL_CRAWL_CACHE[username] = results
+        print(results)
 
         return results

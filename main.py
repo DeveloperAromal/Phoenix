@@ -79,9 +79,8 @@ def run_phoenix():
         # else:
         #     Logger.error("No intelligence gathered.")
             
-        # p = CrawlURL().crawl("DeveloperAromal")
-        # print(p)
-        # print(URL_CRAWL_CACHE)
-        ProxyRotator().rotate()
+        p = CrawlURL().crawl("DeveloperAromal")
+        print(p)
+        # ProxyRotator().rotate()
 if __name__ == "__main__":
     run_phoenix()

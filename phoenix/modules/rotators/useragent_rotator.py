@@ -2,11 +2,8 @@ from config.settings import USER_AGENTS_PATH
 
 import os
 import random
-import requests
 
-
-
-class ProxyRotator:
+class UARotator:
     
     def __init__(self):
         pass
@@ -21,7 +18,4 @@ class ProxyRotator:
     
         
     def rotate(self):
-        rand_agent = random.choice(self._load_agent())
-        rand_agent.strip()
-
-        return rand_agent
+        return random.choice(self._load_user_agent()).replace("\n", "").strip()

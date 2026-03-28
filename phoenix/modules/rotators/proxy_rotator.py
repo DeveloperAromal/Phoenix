@@ -36,8 +36,7 @@ class ProxyRotator:
         return None 
         
     def rotate(self):
-        rand_proxy = random.choice(self._load_proxy())
-        rand_proxy.strip()
+        rand_proxy = random.choice(self._load_proxy()).strip()
         
         proto = self._detect_proto(rand_proxy)
         
