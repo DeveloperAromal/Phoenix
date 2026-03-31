@@ -1,77 +1,72 @@
-from phoenix.memory.cache_storage import URL_CRAWL_CACHE
 from phoenix.modules.rotators.proxy_rotator import ProxyRotator
 from phoenix.modules.rotators.useragent_rotator import UARotator
-from .url_crafter import CraftURL
 
-from bs4 import BeautifulSoup
-import requests
+from playwright.sync_api import sync_playwright
+import random
+import time
 
 
 class CrawlURL:
-    
+
     def __init__(self):
-        self.crafter = CraftURL()
         self.proxy_rotator = ProxyRotator()
         self.ua_rotator = UARotator()
 
-    def crawl(self, username: str):
-        urls = self.crafter.urls(username)
-        results = {}
+        self.playwright = sync_playwright().start()
 
-        for name, url in urls.items():
-            try:
-                headers = {
-                    "User-Agent": self.ua_rotator.rotate()
-                }
+        self.browser = self.playwright.chromium.launch(
+            headless=True,
+            executable_path="C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+        )
 
-                proxy = self.proxy_rotator.rotate()
+        self.context = None
+        self.page = None
 
-                try:
-                    res = requests.get(
-                        url,
-                        headers=headers,
-                        proxies=proxy,
-                        timeout=10
-                    )
-                except:
-                    res = requests.get(
-                        url,
-                        headers=headers,
-                        timeout=10
-                    )
+    def _new_session(self):
+        proxy = self.proxy_rotator.rotate()
+        ua = self.ua_rotator.rotate()
 
-                data = {
-                    "url": url,
-                    "status_code": res.status_code,
-                    "final_url": res.url
-                }
+        if self.context:
+            self.context.close()
 
-                if res.status_code == 200:
-                    soup = BeautifulSoup(res.text, "html.parser")
+        self.context = self.browser.new_context(
+            user_agent=ua,
+            proxy={"server": proxy} if proxy else None,
+            viewport={"width": random.randint(1200, 1400), "height": random.randint(700, 900)},
+            locale="en-US"
+        )
 
-                    title = soup.title.string.strip() if soup.title and soup.title.string else ""
-                    description = ""
+        self.page = self.context.new_page()
 
-                    desc_tag = soup.find("meta", attrs={"name": "description"})
-                    if desc_tag and desc_tag.get("content"):
-                        description = desc_tag["content"].strip()
+        self.page.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+            window.chrome = { runtime: {} };
+        """)
 
-                    data.update({
-                        "status": "success",
-                        "title": title,
-                        "description": description
-                    })
-                else:
-                    data["status"] = "failed"
+        self.page.route("**/*", lambda route: (
+            route.abort() if route.request.resource_type in ["image", "font", "media"]
+            else route.continue_()
+        ))
 
-                results[name] = data
+    def crawl(self, url: str):
+        try:
+            self._new_session()
 
-            except Exception as e:
-                results[name] = {
-                    "url": url,
-                    "status": "error",
-                    "error": str(e)
-                }
-        print(results)
+            time.sleep(random.uniform(1.5, 3.5))
 
-        return results
+            with self.page.expect_response(lambda r: "web_profile_info" in r.url) as resp:
+                self.page.goto(url, timeout=15000)
+
+            response = resp.value
+            data = response.json()
+
+            return data
+
+        except Exception:
+            return None
+
+    def close(self):
+        if self.context:
+            self.context.close()
+        self.browser.close()
+        self.playwright.stop()
