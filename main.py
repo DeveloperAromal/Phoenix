@@ -10,7 +10,7 @@ from phoenix.modules.normalizer.normalize_websearch import Normalizer
 from phoenix.modules.transformer.url_crawler import CrawlURL
 from phoenix.memory.cache_storage import URL_CRAWL_CACHE
 from phoenix.modules.rotators.proxy_rotator import ProxyRotator
-
+from phoenix.modules.social_media_lookup.social_osint import SocialOsint
 
 
 def save_report(data):
@@ -79,8 +79,7 @@ def run_phoenix():
         # else:
         #     Logger.error("No intelligence gathered.")
             
-        p = CrawlURL().crawl("")
-        print(p)
-        # ProxyRotator().rotate()
+        SocialOsint("__itz__aro_mal__", "instagram").osint()
+       
 if __name__ == "__main__":
     run_phoenix()

@@ -1,9 +1,10 @@
 VERSION = "1.0.2"
 
-IS_NEW = False
+IS_NEW = True
 
 LLM_PROVIDER = ""         
 LLM_API_KEY = ""
+SCRAPER_API_KEY = ""
 LLM_MODEL = "gemini-2.5-flash"   
 LLM_MAX_TOKENS = 4096
 LLM_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
